@@ -1,0 +1,15 @@
+{
+  "name": "stargear",
+  "version": "0.1.0",
+  "description": "A simple discord bot framework for connecting a bot to cloudstorm and raincache",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wolke <wolke@weeb.sh>",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "raincache": "DasWolke/RainCache"
+  }
+}
