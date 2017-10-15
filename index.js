@@ -1,6 +1,6 @@
 let StarGear = require('./src/StarGear');
 module.exports.StarGear = StarGear;
-module.exports.Connector = {
+module.exports.Connectors = {
     AmqpConnector: require('./src/connector/AmqpConnector'),
     BaseConnector: require('./src/connector/BaseConnector')
 };
