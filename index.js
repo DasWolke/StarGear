@@ -1,9 +1,11 @@
-let StarGear = require('./src/StarGear');
-module.exports.StarGear = StarGear;
-module.exports.Connectors = {
+const Stargear = require('./src/StarGear');
+
+function StarGear(...args) {
+    return new Stargear(...args);
+}
+
+StarGear.Connectors = {
     AmqpConnector: require('./src/connector/AmqpConnector'),
     BaseConnector: require('./src/connector/BaseConnector')
 };
-module.exports = function (...args) {
-    return new StarGear(...args);
-};
+module.exports = StarGear;
