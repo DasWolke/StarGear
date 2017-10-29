@@ -12,7 +12,6 @@
     "raincache": "DasWolke/RainCache"
   },
   "optionalDependencies": {
-    "amqplib": "^0.5.1",
-    "node-rdkafka": "^2.1.1"
+    "amqplib": "^0.5.1"
   }
 }
