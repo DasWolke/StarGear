@@ -44,6 +44,9 @@ class EventProcessor {
             case 'GUILD_MEMBER_ADD':
                 this.client.emit('guildMemberAdd', event.d);
                 break;
+            case 'GUILD_MEMBER_UPDATE':
+                this.client.emit('guildMemberUpdate', event.d);
+                break;
             case 'GUILD_MEMBER_REMOVE':
                 this.client.emit('guildMemberRemove', event.d);
                 break;
