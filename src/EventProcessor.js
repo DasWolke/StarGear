@@ -81,7 +81,7 @@ class EventProcessor {
                 this.client.emit('voiceStateUpdate', event.d);
                 break;
             default:
-                console.log(event);
+                console.error(event);
                 break;
         }
     }
