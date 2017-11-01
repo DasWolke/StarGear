@@ -4,7 +4,7 @@ try {
 } catch (e) {
     EventEmitter = require('events').EventEmitter;
 }
-const DiscordRestConnector = require('./connector/DiscordRestConnector');
+const SnowTransfer = require('snowtransfer');
 const EventProcessor = require('./EventProcessor');
 
 class Stargear extends EventEmitter {
@@ -21,7 +21,7 @@ class Stargear extends EventEmitter {
         }
         this.inbound = inboundConnector;
         this.eventProcessor = new EventProcessor(this.options, this);
-        this.restConnector = new DiscordRestConnector();
+        this.rest = new SnowTransfer(this.options.token);
     }
 
     async initialize() {

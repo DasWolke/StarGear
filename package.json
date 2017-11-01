@@ -9,7 +9,8 @@
   "author": "wolke <wolke@weeb.sh>",
   "license": "MIT",
   "dependencies": {
-    "raincache": "DasWolke/RainCache"
+    "raincache": "DasWolke/RainCache",
+    "snowtransfer": "DasWolke/SnowTransfer"
   },
   "optionalDependencies": {
     "amqplib": "^0.5.1"
