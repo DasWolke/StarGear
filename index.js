@@ -8,4 +8,5 @@ StarGear.Connectors = {
     AmqpConnector: require('./src/connector/AmqpConnector'),
     BaseConnector: require('./src/connector/BaseConnector')
 };
+StarGear.EventProcessor = require('./src/EventProcessor');
 module.exports = StarGear;

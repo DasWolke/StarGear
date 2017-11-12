@@ -17,6 +17,7 @@ class AqmpConnector extends BaseConnector {
         this.ready = true;
         channel.assertQueue(this.options.amqpQueue, {durable: false, autoDelete: true});
         channel.consume(this.options.amqpQueue, (event) => {
+            channel.ack(event);
             // console.log(event.content.toString());
             this.emit('event', JSON.parse(event.content.toString()));
         });

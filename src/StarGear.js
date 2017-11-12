@@ -7,14 +7,19 @@ try {
 const SnowTransfer = require('snowtransfer');
 const EventProcessor = require('./EventProcessor');
 
-class Stargear extends EventEmitter {
+/**
+ * Base class of the framework
+ * @extends EventEmitter
+ * @property cache - cache class to be used for enhancing received events
+ * @property {SnowTransfer} rest - rest client of the framework
+ * @property {EventProcessor} eventProcessor - class responsible for processing incoming events
+ * @property inbound - connector used for receiving incoming events
+ */
+class StarGear extends EventEmitter {
     constructor(options, inboundConnector) {
         super();
         this.options = {};
         Object.assign(this.options, options);
-        if (!this.options.cache) {
-            console.error('Missing cache');
-        }
         this.cache = this.options.cache;
         if (!inboundConnector) {
             throw new Error('Missing inbound connector');
@@ -37,4 +42,4 @@ class Stargear extends EventEmitter {
     }
 }
 
-module.exports = Stargear;
+module.exports = StarGear;

@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "raincache": "DasWolke/RainCache",
-    "snowtransfer": "DasWolke/SnowTransfer"
+    "snowtransfer": "^0.1.0"
   },
   "optionalDependencies": {
     "amqplib": "^0.5.1"

@@ -1,4 +1,15 @@
+/**
+ * EventProcessor used for triggering events based on incoming events
+ * @property {Object} options
+ * @property {StarGear} client
+ */
 class EventProcessor {
+    /**
+     * Create a new EventProcessor
+     * @param {Object} options
+     * @param {Object} [options.disabledEvents] - Events to disable, those events will not be processed/emitted
+     * @param {StarGear} starGear
+     */
     constructor(options, starGear) {
         this.options = {disabledEvents: {PRESENCE_UPDATE: true, TYPING_START: true}};
         Object.assign(this.options, options);
