@@ -10,7 +10,7 @@ const EventProcessor = require('./EventProcessor');
 /**
  * Base class of the framework
  * @extends EventEmitter
- * @property cache - cache class to be used for enhancing received events
+ * @property {RainCache} cache - cache class to be used for enhancing received events
  * @property {SnowTransfer} rest - rest client of the framework
  * @property {EventProcessor} eventProcessor - class responsible for processing incoming events
  * @property inbound - connector used for receiving incoming events
