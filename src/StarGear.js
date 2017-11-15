@@ -26,7 +26,7 @@ class StarGear extends EventEmitter {
         }
         this.inbound = inboundConnector;
         this.eventProcessor = new EventProcessor(this.options, this);
-        this.rest = new SnowTransfer(this.options.token);
+        this.rest = new SnowTransfer(this.options.token, this.options.rest || {});
     }
 
     async initialize() {
