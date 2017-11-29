@@ -25,6 +25,12 @@ class EventProcessor {
 
     async process(event) {
         switch (event.t) {
+            case 'READY':
+                this.client.emit('ready', event.d);
+                break;
+            case 'RESUMED':
+                this.client.emit('resumt', event.d);
+                break;
             case 'PRESENCE_UPDATE':
                 this.client.emit('presenceUpdate', event.d);
                 break;
@@ -81,6 +87,9 @@ class EventProcessor {
                 break;
             case 'GUILD_REMOVE':
                 this.client.emit('guildRemove', event.d);
+                break;
+            case 'GUILD_ROLE_UPDATE':
+                this.client.emit('guildRoleUpdate');
                 break;
             case 'GUILD_EMOJIS_UPDATE':
                 this.client.emit('guildEmojiUpdate', event.d);
