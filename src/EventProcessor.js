@@ -29,7 +29,7 @@ class EventProcessor {
                 this.client.emit('ready', event.d);
                 break;
             case 'RESUMED':
-                this.client.emit('resumt', event.d);
+                this.client.emit('resume', event.d);
                 break;
             case 'PRESENCE_UPDATE':
                 this.client.emit('presenceUpdate', event.d);
