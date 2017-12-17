@@ -21,6 +21,7 @@ class StarGear extends EventEmitter {
         this.options = {};
         Object.assign(this.options, options);
         this.cache = this.options.cache;
+        this.voice = this.options.voice;
         if (!inboundConnector) {
             throw new Error('Missing inbound connector');
         }
@@ -32,6 +33,9 @@ class StarGear extends EventEmitter {
     async initialize() {
         if (this.cache && !this.cache.ready) {
             await this.cache.initialize();
+        }
+        if (this.voice && !this.voice.ready) {
+            await this.voice.initialize();
         }
         if (!this.inbound.ready) {
             await this.inbound.initialize();
