@@ -1,4 +1,15 @@
+/**
+ * EventProcessor used for triggering events based on incoming events
+ * @property {Object} options
+ * @property {StarGear} client
+ */
 class EventProcessor {
+    /**
+     * Create a new EventProcessor
+     * @param {Object} options
+     * @param {Object} [options.disabledEvents] - Events to disable, those events will not be processed/emitted
+     * @param {StarGear} starGear
+     */
     constructor(options, starGear) {
         this.options = {disabledEvents: {PRESENCE_UPDATE: true, TYPING_START: true}};
         Object.assign(this.options, options);
@@ -14,6 +25,12 @@ class EventProcessor {
 
     async process(event) {
         switch (event.t) {
+            case 'READY':
+                this.client.emit('ready', event.d);
+                break;
+            case 'RESUMED':
+                this.client.emit('resume', event.d);
+                break;
             case 'PRESENCE_UPDATE':
                 this.client.emit('presenceUpdate', event.d);
                 break;
@@ -44,6 +61,9 @@ class EventProcessor {
             case 'GUILD_MEMBER_ADD':
                 this.client.emit('guildMemberAdd', event.d);
                 break;
+            case 'GUILD_MEMBER_UPDATE':
+                this.client.emit('guildMemberUpdate', event.d);
+                break;
             case 'GUILD_MEMBER_REMOVE':
                 this.client.emit('guildMemberRemove', event.d);
                 break;
@@ -68,6 +88,9 @@ class EventProcessor {
             case 'GUILD_REMOVE':
                 this.client.emit('guildRemove', event.d);
                 break;
+            case 'GUILD_ROLE_UPDATE':
+                this.client.emit('guildRoleUpdate');
+                break;
             case 'GUILD_EMOJIS_UPDATE':
                 this.client.emit('guildEmojiUpdate', event.d);
                 break;
@@ -78,7 +101,7 @@ class EventProcessor {
                 this.client.emit('voiceStateUpdate', event.d);
                 break;
             default:
-                console.log(event);
+                console.error(event);
                 break;
         }
     }
