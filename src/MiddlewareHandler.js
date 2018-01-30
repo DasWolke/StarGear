@@ -16,7 +16,7 @@ class MiddlewareHandler {
 
     /**
      * Add a middleware to the stack of middlewares
-     * @param {String|Array} events - Single event name or array of event names that define when the passed function should be called
+     * @param {String|String[]} events - Single event name or array of event names that define when the passed function should be called
      * @param {Function} fn - Function that get's called when a match occurs, may be an async function, parameters passed to the function are event, cache, rest
      */
     addMiddleware(events, fn) {
