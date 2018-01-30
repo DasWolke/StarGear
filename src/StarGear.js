@@ -12,13 +12,21 @@ const utils = require('./utils');
 /**
  * Base class of the framework
  * @extends EventEmitter
- * @property {RainCache} cache - cache class to be used for enhancing received events
- * @property {SnowTransfer} rest - rest client of the framework
- * @property {EventProcessor} eventProcessor - class responsible for processing incoming events
- * @property {utils} utils - object with util functions for ease of usability
- * @property inbound - connector used for receiving incoming events
  */
 class StarGear extends EventEmitter {
+    /**
+     * Create a new StarGear instance (has to be bootstrapped via initialize())
+     * @param {Object} options - object with options passed to StarGear
+     * @param {RainCache} options.cache - cache instance to use
+     * @param {SandySounds} options.voice - voice instance to use
+     * @param {BaseConnector} inboundConnector - inbound connector used for receiving events from an mq, event emitter, etc..
+     * @property {RainCache} cache - cache class to be used for loading additional data about received events
+     * @property {SnowTransfer} rest - rest client of the framework
+     * @property {EventProcessor} eventProcessor - class responsible for processing incoming events
+     * @property {utils} utils - object with util functions for ease of usability
+     * @property {MiddlewareHandler} middlewareHandler - middlewareHandler used for handling any added middlewares once an event comes in
+     * @property {BaseConnector} inbound - connector used for receiving incoming events
+     */
     constructor(options, inboundConnector) {
         super();
         this.options = {};
@@ -35,6 +43,10 @@ class StarGear extends EventEmitter {
         this.middlewareHandler = new MiddlewareHandler(this.cache, this.rest);
     }
 
+    /**
+     * Initialize the framework by bootstrapping the individual components
+     * @return {Promise<void>} - returns a promise that resolves once all components initialized successfully
+     */
     async initialize() {
         if (this.cache && !this.cache.ready) {
             await this.cache.initialize();
@@ -51,8 +63,13 @@ class StarGear extends EventEmitter {
         });
     }
 
-    use(event, fn) {
-        this.middlewareHandler.addMiddleware(event, fn);
+    /**
+     * Add a middleware to stargear
+     * @param {String, String[]} events - Name or list of names of events this middleware should be applied to
+     * @param {Function} fn - function that gets called once the middleware should be applied
+     */
+    use(events, fn) {
+        this.middlewareHandler.addMiddleware(events, fn);
     }
 }
 
