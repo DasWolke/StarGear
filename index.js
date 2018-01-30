@@ -9,5 +9,9 @@ StarGear.Connectors = {
     BaseConnector: require('./src/connector/BaseConnector'),
     DirectConnector: require('./src/connector/DirectConnector')
 };
+StarGear.middleware = {
+    memberMiddleware: require('./src/middleware/memberMiddleware')
+};
 StarGear.EventProcessor = require('./src/EventProcessor');
+StarGear.PermissionProcessor = require('./src/PermissionsProcessor');
 module.exports = StarGear;

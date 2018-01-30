@@ -6,6 +6,7 @@ try {
 }
 const SnowTransfer = require('snowtransfer');
 const EventProcessor = require('./EventProcessor');
+const MiddlewareHandler = require('./MiddlewareHandler');
 const utils = require('./utils');
 
 /**
@@ -31,6 +32,7 @@ class StarGear extends EventEmitter {
         this.inbound = inboundConnector;
         this.eventProcessor = new EventProcessor(this.options, this);
         this.rest = new SnowTransfer(this.options.token, this.options.rest || {});
+        this.middlewareHandler = new MiddlewareHandler(this.cache, this.rest);
     }
 
     async initialize() {
@@ -44,8 +46,13 @@ class StarGear extends EventEmitter {
             await this.inbound.initialize();
         }
         this.inbound.on('event', async (event) => {
+            event = await this.middlewareHandler.applyMiddleware(event);
             await this.eventProcessor.inbound(event);
         });
+    }
+
+    use(event, fn) {
+        this.middlewareHandler.addMiddleware(event, fn);
     }
 }
 
