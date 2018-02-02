@@ -1,6 +1,6 @@
 {
   "name": "stargear",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple discord bot framework for connecting a bot to cloudstorm and raincache",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   "author": "wolke <wolke@weeb.sh>",
   "license": "MIT",
   "dependencies": {
-    "raincache": "DasWolke/RainCache#dev",
+    "raincache": "^0.4.0",
     "snowtransfer": "^0.2.1"
   },
   "optionalDependencies": {
